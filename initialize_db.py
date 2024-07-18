@@ -1,12 +1,14 @@
 import psycopg2
+from dotenv import load_dotenv
+import os
 
 def initialize_db():
     conn = psycopg2.connect(
-        dbname='events_db',
-        user='postgres',
-        password='pgadmin',
-        host='localhost',
-        port='5432'
+        database=os.getenv('DATABSE_NAME'),
+        user=os.getenv('DATABASE_USER'),
+        password=os.getenv('DATABASE_PASS'),
+        host=os.getenv('DATABASE_HOST'),
+        port=os.getenv('DATABASE_PORT')
     )
     c = conn.cursor()
     # Create the events table
@@ -57,5 +59,7 @@ def initialize_db():
     conn.commit()
     conn.close()
 
-# Initialize the database
-initialize_db()
+if __name__ == '__main__':
+    # Initialize the database
+    load_dotenv()
+    initialize_db()
