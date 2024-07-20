@@ -5,9 +5,6 @@ from dotenv import load_dotenv
 import logging
 import os
 import psycopg2
-import schedule
-import time
-import threading
 
 def fetch_events(api_url: str = ''):
     try:
